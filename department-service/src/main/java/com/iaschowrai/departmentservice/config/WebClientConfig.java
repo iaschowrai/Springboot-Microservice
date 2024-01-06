@@ -1,7 +1,6 @@
 package com.iaschowrai.departmentservice.config;
 
 import com.iaschowrai.departmentservice.client.EmployeeClient;
-import com.netflix.discovery.converters.Auto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.loadbalancer.reactive.LoadBalancedExchangeFilterFunction;
 import org.springframework.context.annotation.Bean;
@@ -25,10 +24,10 @@ public class WebClientConfig {
 
     @Bean
     public EmployeeClient employeeClient(){
-        HttpServiceProxyFactory httpServiceProxyFactory
-                = HttpServiceProxyFactory
+        HttpServiceProxyFactory httpServiceProxyFactory = HttpServiceProxyFactory
                 .builder(WebClientAdapter.forClient(employeeWebClient()))
                 .build();
+
         return httpServiceProxyFactory.createClient(EmployeeClient.class);
 
     }
